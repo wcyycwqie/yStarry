@@ -1,0 +1,82 @@
+/**
+ * 
+ * @authors YYM
+ * @date    2019-12-20 09:55:11
+ * @version $V1.2$
+ */
+
+// 公共属性
+@colorOne: #66CCFF;
+@bgColorOne: #ff4e4e48;
+@bgColorTwo: #50b6fa5b;
+@bgColorThree: #0c1328;
+@yColor: #660C0B;
+@yColorII: #6f0707;
+@minutes: 60s;
+@rateG: 0.618;
+
+// 公共样式
+.Wh(@w; @h: @w) {
+  width: @w;
+  height: @h;
+}
+
+.Gwh(@width) {
+  width: @width;
+  height: @width * @rateG;
+}
+
+.MinWh(@w; @h: @w) {
+  min-width: @w;
+  min-height: @h;
+}
+
+
+.BoxRadius(@tl: 16px; @tr: 16px; @bl: 16px; @br: 16px) {
+  border-top-left-radius: @tl;
+  border-top-right-radius: @tr;
+  border-bottom-left-radius: @bl;
+  border-bottom-right-radius: @br;
+}
+
+.CardBox(@w: 100%; @h: @w; @bgColor: #66CCFF; @radius: 0px) {
+  width: @w;
+  height: @h;
+  background: @bgColor;
+  border-radius: @radius;
+  box-sizing: border-box;
+}
+
+.Pre(@style; @value) {
+  -webkit-@{style}: @value;
+  -mos-@{style}: @value;
+  -ms-@{style}: @value;
+  @{style}: @value;
+}
+
+//字体背景
+.FontBg(@arg: linear-gradient(to right, #F76F30, #FF0, #F00)) {
+  background: @arguments;
+  -webkit-background-clip: text;
+  -mos-background-clip: text;
+  -ms-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+}
+
+@keyframes FontFlow {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.FlexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

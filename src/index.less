@@ -1,0 +1,78 @@
+@import url('./myStyle.less');
+
+* {
+    box-sizing: border-box;
+}
+
+// 页面样式
+
+.yBox-navbar {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.yBox-banner {
+    display: flex;
+    justify-content: center;
+}
+
+.yNavBar {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    .CardBox(1198px, 56px, #50b6fa2b);
+
+    ul {
+        flex: 1;
+        display: flex;
+
+        li {
+            .FlexCenter();
+            width: 25%;
+            font-size: 24px;
+            // color: #63043d;
+            color: #FFF;
+            font-weight: 800;
+
+        }
+    }
+
+    .nav-icon {
+        .CardBox(40px, 40px, #6f0707);
+        clip-path: polygon(0 0, 28% 11%, 50% 30%, 72% 11%, 100% 0, 83% 39%, 60% 52%, 49% 100%, 40% 52%, 17% 39%, 0 0, 0 0);
+
+    }
+
+}
+
+.yBanner {
+    width: 100%;
+    .banner-img {
+        .Wh(100%, 160px);
+        // min-width: 1198px;
+        background: url('./assets/images/background/1.png') no-repeat;
+        background-position: 0px -200px;
+    }
+}
+
+
+#yMainContent {
+    max-width: 1198px;
+    margin: 0 auto;
+
+    .yMain-dataList {
+        display: flex;
+        flex-wrap: wrap;
+
+        .card-item {
+            margin: 6px 8px;
+            padding: 8px 10px;
+            .CardBox(222px, 120px, #F2F2F2, 8px);
+            overflow: hidden;
+            
+        }
+    }
+}
