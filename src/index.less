@@ -1,4 +1,4 @@
-@import url('./myStyle.less');
+@import url('./assets/css/myStyle.less');
 
 * {
     box-sizing: border-box;
@@ -28,6 +28,7 @@
     ul {
         flex: 1;
         display: flex;
+        height: 100%;
 
         li {
             .FlexCenter();
@@ -35,12 +36,21 @@
             font-size: 24px;
             // color: #63043d;
             color: #FFF;
-            font-weight: 800;
+            font-weight: 400;
+            transition: all 0.4s;
+
+            &:hover {
+                background-color: #50b6fa2b;
+                border: 10px solid transparent;
+                border-width: 12px 8px;
+                border-image: url("./assets/images/common/border-img.png") 12 8 round;
+            }
 
         }
     }
 
     .nav-icon {
+        margin-right: 12px;
         .CardBox(40px, 40px, #6f0707);
         clip-path: polygon(0 0, 28% 11%, 50% 30%, 72% 11%, 100% 0, 83% 39%, 60% 52%, 49% 100%, 40% 52%, 17% 39%, 0 0, 0 0);
 
@@ -50,6 +60,7 @@
 
 .yBanner {
     width: 100%;
+
     .banner-img {
         .Wh(100%, 160px);
         // min-width: 1198px;
@@ -72,7 +83,68 @@
             padding: 8px 10px;
             .CardBox(222px, 120px, #F2F2F2, 8px);
             overflow: hidden;
-            
+
         }
     }
+}
+
+.pop-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    .FlexCenter();
+    .Wh(100%);
+
+    .pop-cover {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 0;
+        .Wh(100%);
+        background-color: rgba(0, 0, 0, 0.7);
+        transition: all 0.3s;
+    }
+
+    .pop-content {
+        position: absolute;
+        z-index: 10;
+        .FlexCenter();
+        flex-direction: column;
+        padding: 16px 12px;
+        .CardBox(800px, 550px, #FFF, 12px);
+
+        // transition: all 0.3s;
+        animation: showToast 0.7s ease-out;
+
+
+        @keyframes showToast {
+            0% {
+                .Wh(0);
+                opacity: 0.2;
+
+            }
+
+            100% {
+                .Wh(800px, 550px);
+            }
+        }
+
+        .pop-main {
+            text-align: center;
+
+            .pop-main-img {
+                margin-top: 8px;
+
+                img {
+                    .MaxWh(100%);
+                    border: 1px dashed #66CCFF;
+                    border-radius: 8px;
+                }
+            }
+
+        }
+    }
+
+
 }

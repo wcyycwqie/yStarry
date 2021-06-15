@@ -2,13 +2,14 @@
  * @Author: 
  * @Date: 2021-06-04 11:38:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-11 16:02:44
- * @FilePath: \my-app\src\index.js
+ * @LastEditTime: 2021-06-15 18:11:35
+ * @FilePath: \yStarry\src\index.js
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './base.css';
+import './assets/css/base.css'
 import './index.min.css';
+
 
 class Container extends React.Component {
     render () {
@@ -69,7 +70,8 @@ class MainContent extends React.Component {
     constructor(props) {
         super()
         this.state = {
-            name : 'main area'
+            name: 'main area',
+            showFlag: false,
         }
         this.hotRef = React.createRef();
     }
@@ -78,7 +80,7 @@ class MainContent extends React.Component {
         let dataList = [1, 2, 3, 4, 5]
         return dataList.map((el, index) => {
             return (
-                <div className="card-item" key={`card${index}`} onClick={() => this.itemClick(index)}>
+                <div className="card-item" key={`card${index}`} onClick={(e) => this.itemClick(e, index)}>
                     <div className="card-title">hoho</div>
                     <div className="card-text">{el}</div>
                     <div className="card-text">{this.state.name}</div>
@@ -86,9 +88,9 @@ class MainContent extends React.Component {
             )
         })
     }
-    itemClick (index) {
-        console.log(index)
-        console.log(this.hotRef.current)
+    itemClick (e, index) {
+        console.log(e);
+        this.setState({ showFlag: true })
     }
 
     getHotData (data) {
@@ -101,7 +103,8 @@ class MainContent extends React.Component {
                 <div className="yMain-dataList">
                     {this.renderCard()}
                 </div>
-                <ShowHot ref={this.hotRef} parent={this} nameValue={this.state.name} onClick={() => {}}/>
+                <ShowHot ref={this.hotRef} parent={this} nameValue={this.state.name} />
+                <MainToast parent={this} showFlag={this.state.showFlag} />
             </div>
         )
     }
@@ -117,18 +120,51 @@ class ShowHot extends React.Component {
     }
 
     render () {
-        console.log(this.props);
-        console.log(this);
         return (
             <div>
                 <h1>ahahahaha</h1>
                 <h2>{this.props.nameValue}</h2>
                 <h3>{this.state.nameValue}</h3>
-                <h4 onClick={() => {console.log(this.props.parent.setState({name: 'lalala'}))}}>parent hohoho</h4>
-                <h2 onClick={() => {this.props.parent.getHotData(this.state.name)}}>diliver props to parent</h2>
+                <h4 onClick={() => { console.log(this.props.parent.setState({ name: 'lalala' })) }}>parent hohoho</h4>
+                <h2 onClick={() => { this.props.parent.getHotData(this.state.name) }}>diliver props to parent</h2>
             </div>
         )
     }
+}
+
+class MainToast extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            showToast: false
+        }
+    }
+
+    render () {
+        if (!this.props.showFlag) {
+            return null
+        }
+        return (
+            <div id="mainToast" className="pop-box">
+                <div className="pop-cover" onClick={() => { this.props.parent.setState({ showFlag: false }) }}></div>
+                <div className="pop-content">
+                    <div className="pop-top">
+                        <span className="pop-title">Title</span>
+                    </div>
+                    <div className="pop-main">
+                        <div className="pop-main-img">
+                            <img src={require("./assets/images/show/1.jpg").default} alt="" />
+                        </div>
+                        <div className="pop-main-tips">
+                            <span>text</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 }
 
 
