@@ -84,6 +84,14 @@
             .CardBox(222px, 120px, #F2F2F2, 8px);
             overflow: hidden;
 
+            .card-img {
+                .FlexCenter();
+
+                img {
+                    .CardBox(200px, 110px);
+                }
+            }
+
         }
     }
 }
@@ -121,7 +129,7 @@
         @keyframes showToast {
             0% {
                 .Wh(0);
-                opacity: 0.2;
+                opacity: 0.3;
 
             }
 
@@ -135,6 +143,7 @@
 
             .pop-main-img {
                 margin-top: 8px;
+
 
                 img {
                     .MaxWh(100%);

@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-04 11:38:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-15 18:11:35
+ * @LastEditTime: 2021-06-16 18:27:23
  * @FilePath: \yStarry\src\index.js
  */
 import React from 'react';
@@ -72,25 +72,57 @@ class MainContent extends React.Component {
         this.state = {
             name: 'main area',
             showFlag: false,
+            dataList: [
+                {
+                    id: 1,
+                    name: 'star I',
+                    src: "./assets/images/background/2.png"
+                },
+                {
+                    id: 2,
+                    name: 'star II',
+                    src: './assets/images/background/3.png'
+                },
+                {
+                    id: 3,
+                    name: 'star III',
+                    src: "./assets/images/background/4.png"
+                },
+                {
+                    id: 4,
+                    name: 'star IV',
+                    src: "./assets/images/background/5.png"
+                },
+                {
+                    id: 5,
+                    name: 'star V',
+                    src: "./assets/images/background/6.png"
+                }
+            ],
+            showImgSrc: '',
         }
         this.hotRef = React.createRef();
     }
 
     renderCard () {
-        let dataList = [1, 2, 3, 4, 5]
-        return dataList.map((el, index) => {
+        // let dataList = [1, 2, 3, 4, 5]
+
+        return this.state.dataList.map((item, index) => {
             return (
-                <div className="card-item" key={`card${index}`} onClick={(e) => this.itemClick(e, index)}>
-                    <div className="card-title">hoho</div>
-                    <div className="card-text">{el}</div>
-                    <div className="card-text">{this.state.name}</div>
+                <div className="card-item" key={`card${index}`} onClick={(e) => this.itemClick(e, item, index)}>
+                    {/* <div className="card-title">{item.name}</div> */}
+                    {/* <div className="card-text">{item.id}</div> */}
+                    <div className="card-img">
+                        <img src={require(`${item.src || './assets/images/show/1.jpg'}`).default} alt="" />
+                    </div>
                 </div>
             )
         })
     }
-    itemClick (e, index) {
-        console.log(e);
-        this.setState({ showFlag: true })
+    itemClick (e, item, index) {
+        this.setState({ showFlag: true, showImgSrc: item.src })
+        console.log('hohoho');
+        console.log(this.state);
     }
 
     getHotData (data) {
@@ -104,7 +136,7 @@ class MainContent extends React.Component {
                     {this.renderCard()}
                 </div>
                 <ShowHot ref={this.hotRef} parent={this} nameValue={this.state.name} />
-                <MainToast parent={this} showFlag={this.state.showFlag} />
+                <MainToast parent={this} showFlag={this.state.showFlag} showImgSrc={this.state.showImgSrc} />
             </div>
         )
     }
@@ -136,14 +168,42 @@ class MainToast extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            showToast: false
+            showToast: props.showFlag
         }
     }
 
+    static defaultProps = {
+        showImgSrc: './assets/images/show/1.jpg'
+    }
+
+    // 该生命周期在新版本已经废弃 
+    // componentWillReceiveProps(props) {
+    //     console.log('componentWillReceiveProps');n
+    // }
+
+    static getDerivedStateFromProps (props, state) {
+        console.log('ffff');
+        console.log(props);
+        console.log(state);
+        console.log('ggggg');
+        if (state.showToast !== props.showFlag) {
+            return {
+                showToast: props.showFlag
+            }
+        }
+        return null;
+    }
+
     render () {
-        if (!this.props.showFlag) {
+        console.log(this.state);
+        if (!this.state.showToast) {
             return null
         }
+
+        // if (!this.props.showFlag) {
+        //     return null
+        // }
+        console.log(this.props);
         return (
             <div id="mainToast" className="pop-box">
                 <div className="pop-cover" onClick={() => { this.props.parent.setState({ showFlag: false }) }}></div>
@@ -153,7 +213,7 @@ class MainToast extends React.Component {
                     </div>
                     <div className="pop-main">
                         <div className="pop-main-img">
-                            <img src={require("./assets/images/show/1.jpg").default} alt="" />
+                            <img src={require(`${this.props.showImgSrc || './assets/images/show/1.jpg'}`).default} alt="" />
                         </div>
                         <div className="pop-main-tips">
                             <span>text</span>
