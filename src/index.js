@@ -14,5 +14,4 @@ import './assets/css/app.min.css'
 ReactDOM.render(
     <AppRouter />,
     document.getElementById('root')
-
 )

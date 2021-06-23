@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-22 18:18:30
+ * @LastEditTime: 2021-06-23 15:07:17
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -134,11 +134,12 @@ class MainToast extends React.Component {
     //     console.log('componentWillReceiveProps');n
     // }
 
+    // 组件生命周期 
     static getDerivedStateFromProps (props, state) {
-        console.log('ffff');
+        console.log('-----');
         console.log(props);
         console.log(state);
-        console.log('ggggg');
+        console.log('-----');
         if (state.showToast !== props.showFlag) {
             return {
                 showToast: props.showFlag
