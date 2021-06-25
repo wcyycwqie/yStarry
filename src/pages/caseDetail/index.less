@@ -1,0 +1,45 @@
+@import url('../../assets/css/myStyle.less');
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 1200px;
+    background-color: #595090;
+
+    .details-area {
+        // .Gwh(800px);
+
+
+        .area-title {
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .area-showCard {
+            position: relative;
+            .FlexCenter();
+            flex-direction: column;
+            width: 800px;
+            perspective: 1000px;
+
+            img {
+                width: 800px;
+                height: 500px;
+                border-radius: 8px;
+                transform-style: preserve-3d;
+
+                transform: rotateX(25deg);
+            }
+
+            .bottom-card {
+                position: absolute;
+                top: 0;
+                z-index: -1;
+                .CardBox(1000px, 500px, #FFF);
+                
+            }
+        }
+    }
+}
