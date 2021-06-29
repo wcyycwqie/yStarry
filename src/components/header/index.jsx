@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-22 16:23:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-23 16:06:42
+ * @LastEditTime: 2021-06-29 11:50:00
  * @FilePath: \yStarry\src\components\header\index.jsx
  */
 import React from 'react';
@@ -46,6 +46,7 @@ class NavBar extends React.Component {
     }
 
     render () {
+        console.log('render header');
         let liList = []
         let navTitle = ['风', '花', '雪', '月']
         liList = navTitle.map((el, i) => {
@@ -53,7 +54,7 @@ class NavBar extends React.Component {
         })
         return (
             <div className={`yNavBar ${this.state.showNavFlag ? 'bgShow' : ''}`}>
-                <div className="nav-icon">
+                <div className="nav-icon" onClick={() => { window.location = "/" }}>
                 </div>
                 <ul>
                     {liList}

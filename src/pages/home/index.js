@@ -2,18 +2,26 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-23 15:07:17
+ * @LastEditTime: 2021-06-29 18:25:57
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
 import './index.min.css';
+import {
+    Link,
+    withRouter,
+    useLocation
+} from 'react-router-dom'
 
 export default class Container extends React.Component {
+
     render () {
+        console.log(this);
+
         return (
             <div className="yContainer">
                 <div className="yBox-mainContent">
-                    <MainContent />
+                    <MainContent {...this.props} />
                 </div>
             </div>
         )
@@ -68,18 +76,31 @@ class MainContent extends React.Component {
                     <div className="card-img">
                         <img src={require(`../../assets/images/background/${item.src || '1.png'}`).default} alt="" />
                     </div>
+                    <div className="card-link" onClick={(e) => this.gotoDetail(e, item)}>{'>>>'}</div>
+
                 </div>
             )
         })
     }
     itemClick (e, item, index) {
         this.setState({ showFlag: true, showImgSrc: item.src })
-        console.log('hohoho');
-        console.log(this.state);
     }
 
     getHotData (data) {
         console.log(data)
+
+    }
+
+    gotoDetail (e, data) {
+        e.stopPropagation()
+        console.log(data);
+        console.log(this.props);
+        let id = 123
+        // this.props.history.push(`/case-detail?name=${data.name}&img=${data.src}`)
+        // this.props.history.push({ path: '/case-detail', query: { name: `123` } })
+        this.props.history.push(`/case-detail/${id}`)
+
+
     }
 
     render () {
@@ -137,8 +158,7 @@ class MainToast extends React.Component {
     // 组件生命周期 
     static getDerivedStateFromProps (props, state) {
         console.log('-----');
-        console.log(props);
-        console.log(state);
+        console.log('getDerivedStateFromProps');
         console.log('-----');
         if (state.showToast !== props.showFlag) {
             return {
@@ -149,15 +169,16 @@ class MainToast extends React.Component {
     }
 
     render () {
+        console.log('********');
+        console.log('render');
         console.log(this.state);
+        console.log('********');
         if (!this.state.showToast) {
             return null
         }
-
         // if (!this.props.showFlag) {
         //     return null
         // }
-        console.log(this.props);
         return (
             <div id="mainToast" className="pop-box">
                 <div className="pop-cover" onClick={() => { this.props.parent.setState({ showFlag: false }) }}></div>

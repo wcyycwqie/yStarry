@@ -30,15 +30,27 @@
                 border-radius: 8px;
                 transform-style: preserve-3d;
 
-                transform: rotateX(25deg);
+                transform: rotateX(18deg);
             }
 
             .bottom-card {
                 position: absolute;
-                top: 0;
+                top: 100px;
                 z-index: -1;
-                .CardBox(1000px, 500px, #FFF);
-                
+                .CardBox(900px; 440px; linear-gradient(to right, rgb(0, 217, 255), rgb(0, 174, 255), rgb(151, 42, 165), rgb(164, 82, 219), rgb(93, 25, 172), rgb(79, 42, 165), rgb(0, 102, 255), rgb(0, 174, 255), rgb(0, 217, 255)); );
+                transform: rotateX(18deg);
+                animation: bgFloat 14s linear infinite alternate;
+                background-size: 200% 100%;
+
+                @keyframes bgFloat {
+                    0% {
+                        background-position: 0% 0;
+                    }
+
+                    100% {
+                        background-position: -200% 0;
+                    }
+                }
             }
         }
     }
