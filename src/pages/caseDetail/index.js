@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-23 15:55:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-29 18:28:54
+ * @LastEditTime: 2021-06-30 18:38:10
  * @FilePath: \yStarry\src\pages\caseDetail\index.js
  */
 import React from 'react';
@@ -18,6 +18,7 @@ import './index.min.css';
 function usePageViews () {
     console.log(useParams());
     console.log(useLocation());
+    console.log(useHistory());
     let location = useLocation();
     // 在此可以做一些统计
     // React.useEffect(() => {
@@ -35,9 +36,10 @@ class MainContent extends React.Component {
 
     }
 
-    userLocal () {
+    paramsHandle(param) {
 
     }
+    
 
     render () {
         console.log('*****')
@@ -53,11 +55,11 @@ class MainContent extends React.Component {
                         <div className="bottom-card"></div>
                     </div>
                     <div className="area-getMore">
-                        <div className="yBtn">演示页面</div>
-                        <div className="yBtn">查看文章</div>
+                        <div className="yBtn-default">演示页面</div>
+                        <div className="yBtn-default">查看文章</div>
                     </div>
                     <div className="area-details">
-
+                        <span>hohohoho</span>
                     </div>
 
                 </div>
@@ -69,7 +71,6 @@ class MainContent extends React.Component {
 export default function CaseDetail (props) {
     console.log('CaseDetail');
     console.log(props);
-    usePageViews()
 
     return (
         <div id="CaseDetail" className="CaseDetail">

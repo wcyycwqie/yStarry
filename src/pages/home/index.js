@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-29 18:25:57
+ * @LastEditTime: 2021-06-30 17:09:48
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -13,23 +13,37 @@ import {
     useLocation
 } from 'react-router-dom'
 
-export default class Container extends React.Component {
+// export default class Container extends React.Component {
+//     render () {
+//         console.log('Container Start');
+//         console.log(this);
+//         return (
+//             <div className="yContainer">
+//                 <div className="yBox-mainContent">
+//                     <MainContent {...this.props} />
+//                 </div>
+//             </div>
+//         )
+//     }
+// }
 
-    render () {
-        console.log(this);
-
-        return (
-            <div className="yContainer">
-                <div className="yBox-mainContent">
-                    <MainContent {...this.props} />
-                </div>
+export default function Container (props) {
+    console.log('Container Start');
+    console.log(props);
+    return (
+        <div className="yContainer">
+            <div className="yBox-mainContent">
+                <MainContent {...props} />
             </div>
-        )
-    }
+        </div>
+    )
+
 }
+
 
 class MainContent extends React.Component {
     constructor(props) {
+        console.log('constructor!!');
         super()
         this.state = {
             name: 'main area',
@@ -66,6 +80,59 @@ class MainContent extends React.Component {
         this.hotRef = React.createRef();
     }
 
+    // 组件生命周期 getDerivedStateFromProps 在render更新前触发
+    static getDerivedStateFromProps (props, state) {
+        console.log('组件生命周期 getDerivedStateFromProps');
+        return null
+    }
+
+    // 该生命周期在新版本(16.3)已经废弃 
+    // 组件生命周期 componentWillMount 组件在第一次渲染前调用 
+    // componentWillMount () {
+    //     console.log('组件生命周期 componentWillMount');
+    //     console.log(this.props);
+    // }
+
+    // 组件生命周期 componentDidMount 组件第一次渲染后调用 数据初始化
+    componentDidMount () {
+        console.log('组件生命周期 componentDidMount');
+    }
+
+    // 组件生命周期 componentWillUnmount 组件从 DOM 中移除之前立刻被调用
+    componentWillUnmount () {
+        console.log('组件生命周期 componentWillUnmount');
+        console.log(this.props);
+    }
+
+    // 该生命周期在新版本(16.3)已经废弃 
+    // 组件生命周期 componentWillReceiveProps 组件接收到一个新的 prop (更新后)时被调用
+    // componentWillReceiveProps (props) {
+    //     console.log('组件生命周期 componentWillReceiveProps');
+    // }
+
+
+    // 组件生命周期 shouldComponentUpdate 用于判断组件是否有数据更新
+    shouldComponentUpdate (p) {
+        console.log('判断组件是否有数据更新');
+        return p
+    }
+
+    // 该生命周期在新版本(16.3)已经废弃 
+    // 组件生命周期 componentWillUpdate 组件接收到新的props或者state但还没有render时被调用
+    // componentWillUpdate (prop) {
+    //     console.log('组件生命周期 componentWillUpdate 在render更新之前');
+    //     console.log(prop);
+    // }
+
+    // 组件生命周期 componentDidUpdate 组件完成更新(render)后立即调用
+    componentDidUpdate (prop) {
+        console.log('组件生命周期 componentDidUpdate 在render完成更新之后 ');
+        console.log(prop);
+    }
+
+
+
+
     renderCard () {
         // let dataList = [1, 2, 3, 4, 5]
         return this.state.dataList.map((item, index) => {
@@ -95,11 +162,8 @@ class MainContent extends React.Component {
         e.stopPropagation()
         console.log(data);
         console.log(this.props);
-        let id = 123
-        // this.props.history.push(`/case-detail?name=${data.name}&img=${data.src}`)
-        // this.props.history.push({ path: '/case-detail', query: { name: `123` } })
-        this.props.history.push(`/case-detail/${id}`)
-
+        this.props.history.push(`/case-detail?name=${data.name}&img=${data.src}`)
+        // this.props.history.push({ pathname: '/case-detail', query: { name: `123` } })
 
     }
 
@@ -149,11 +213,6 @@ class MainToast extends React.Component {
     static defaultProps = {
         showImgSrc: '../../assets/images/show/1.jpg'
     }
-
-    // 该生命周期在新版本已经废弃 
-    // componentWillReceiveProps(props) {
-    //     console.log('componentWillReceiveProps');n
-    // }
 
     // 组件生命周期 
     static getDerivedStateFromProps (props, state) {

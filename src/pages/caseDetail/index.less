@@ -9,8 +9,7 @@
     background-color: #595090;
 
     .details-area {
-        // .Gwh(800px);
-
+        width: 970px;
 
         .area-title {
             font-size: 36px;
@@ -21,7 +20,7 @@
             position: relative;
             .FlexCenter();
             flex-direction: column;
-            width: 800px;
+            // width: 800px;
             perspective: 1000px;
 
             img {
@@ -52,6 +51,32 @@
                     }
                 }
             }
+
+        }
+
+        .area-getMore {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 64px;
+            padding: 12px 100px;
+            border-top: 1px solid #66CCFF;
+            border-bottom: 1px solid #66CCFF;
+
+            .yBtn-default {
+                .FlexCenter();
+                .CardBox(120px, 50px, linear-gradient(180deg, #99164c 0%, #6e66693d 100%));
+                color: #FFF;
+            }
+
+        }
+
+        .area-details {
+            margin-top: 32px;
+            padding: 12px 16px;
+            .MinWh(100%, 800px);
+            border-radius: 16px;
+            background-color: rgb(243, 245, 234);
+            font-size: 16px;
         }
     }
 }

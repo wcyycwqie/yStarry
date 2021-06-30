@@ -11,6 +11,7 @@
         background-color: #bdfafd8f;
 
         .card-item {
+            position: relative;
             margin: 6px 8px;
             padding: 8px 10px;
             .CardBox(222px, 140px, #FFF, 8px);
@@ -22,6 +23,26 @@
                 img {
                     .CardBox(200px, 110px);
                 }
+            }
+
+            transition: all 0.4s linear;
+
+            &:hover,
+            &:focus {
+                filter: opacity(0.75) brightness(120%);
+
+                // &::after {
+                //     position: absolute;
+                //     top: 0;
+                //     left: 0;
+                //     content: '';
+                //     display: block;
+                //     width: 100%;
+                //     height: 100%;
+                //     background-color: #66ccff88;
+                // }
+
+
             }
 
         }

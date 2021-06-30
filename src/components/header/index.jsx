@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-22 16:23:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-29 11:50:00
+ * @LastEditTime: 2021-06-30 16:10:58
  * @FilePath: \yStarry\src\components\header\index.jsx
  */
 import React from 'react';
@@ -30,6 +30,25 @@ class NavBar extends React.Component {
     // 组件生命周期 组件从 DOM 中移除之前立刻被调用
     componentWillUnmount () {
         window.removeEventListener('scroll', this.bindScroll)
+    }
+
+    componentWillReceiveProps (prop) {
+        console.log('组件获取新的prop调用');
+        console.log(prop);
+    }
+
+    shouldComponentUpdate (p) {
+        console.log('判断组件是否有数据更新');
+        return p
+    }
+
+    componentWillUpdate (prop) {
+        console.log('组件更新 在render更新之前');
+        console.log(prop);
+    }
+    componentDidUpdate (prop) {
+        console.log('组件更新 在render完成更新之后 ');
+        console.log(prop);
     }
 
     bindScroll = (event) => {
