@@ -14,17 +14,8 @@
             position: relative;
             margin: 6px 8px;
             padding: 8px 10px;
-            .CardBox(222px, 140px, #FFF, 8px);
+            .CardBox(222px, 144px, #FFF, 8px);
             overflow: hidden;
-
-            .card-img {
-                .FlexCenter();
-
-                img {
-                    .CardBox(200px, 110px);
-                }
-            }
-
             transition: all 0.4s linear;
 
             &:hover,
@@ -41,8 +32,23 @@
                 //     height: 100%;
                 //     background-color: #66ccff88;
                 // }
+            }
 
+            .card-img {
+                .FlexCenter();
 
+                img {
+                    .CardBox(200px, 110px);
+                }
+            }
+            .card-link {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 4px;
+                img {
+                    .Wh(22px);
+                    transform: rotate(180deg);
+                }
             }
 
         }

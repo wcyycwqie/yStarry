@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-30 17:09:48
+ * @LastEditTime: 2021-07-01 16:19:26
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -143,7 +143,9 @@ class MainContent extends React.Component {
                     <div className="card-img">
                         <img src={require(`../../assets/images/background/${item.src || '1.png'}`).default} alt="" />
                     </div>
-                    <div className="card-link" onClick={(e) => this.gotoDetail(e, item)}>{'>>>'}</div>
+                    <div className="card-link" >
+                        <img src={require(`../../assets/images/icon/arr-I.png`).default} alt="跳转详情" onClick={(e) => this.gotoDetail(e, item)} />
+                    </div>
 
                 </div>
             )
@@ -162,7 +164,7 @@ class MainContent extends React.Component {
         e.stopPropagation()
         console.log(data);
         console.log(this.props);
-        this.props.history.push(`/case-detail?name=${data.name}&img=${data.src}`)
+        this.props.history.push(`/case-detail?id=1&name=${data.name}&imgUrl=${data.src}`)
         // this.props.history.push({ pathname: '/case-detail', query: { name: `123` } })
 
     }
