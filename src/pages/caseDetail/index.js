@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-23 15:55:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-01 16:19:40
+ * @LastEditTime: 2021-07-05 17:40:32
  * @FilePath: \yStarry\src\pages\caseDetail\index.js
  */
 import React from 'react';
@@ -32,7 +32,8 @@ class MainContent extends React.Component {
         super()
         this.state = {
             id: '',
-            imgUrl: ''
+            imgUrl: '',
+            content: '详情内容'
         }
 
     }
@@ -75,11 +76,8 @@ class MainContent extends React.Component {
                         <div className="yBtn-default">查看文章</div>
                     </div>
                     <div className="area-details">
-                        <span>hohohoho</span>
-                        <span>hohohoho</span>
-                        <span>hohohoho</span>
-                        <span>hohohoho</span>
-                        <span>hohohoho</span>
+                        <span>{this.state.content}</span>
+
                     </div>
 
                 </div>
