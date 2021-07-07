@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-01 16:19:26
+ * @LastEditTime: 2021-07-07 16:21:00
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -52,26 +52,31 @@ class MainContent extends React.Component {
                 {
                     id: 1,
                     name: 'star I',
+                    title: 'canvas教学',
                     src: "2.png"
                 },
                 {
                     id: 2,
                     name: 'star II',
+                    title: 'css案例',
                     src: '3.png'
                 },
                 {
                     id: 3,
                     name: 'star III',
+                    title: 'css动画',
                     src: "4.png"
                 },
                 {
                     id: 4,
                     name: 'star IV',
+                    title: 'canvas教学',
                     src: "5.png"
                 },
                 {
                     id: 5,
                     name: 'star V',
+                    title: 'canvas教学',
                     src: "6.png"
                 }
             ],
@@ -143,6 +148,7 @@ class MainContent extends React.Component {
                     <div className="card-img">
                         <img src={require(`../../assets/images/background/${item.src || '1.png'}`).default} alt="" />
                     </div>
+                    <div className="card-title">{item.title}</div>
                     <div className="card-link" >
                         <img src={require(`../../assets/images/icon/arr-I.png`).default} alt="跳转详情" onClick={(e) => this.gotoDetail(e, item)} />
                     </div>

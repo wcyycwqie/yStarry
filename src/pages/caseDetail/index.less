@@ -14,6 +14,7 @@
         .area-title {
             font-size: 36px;
             font-weight: 800;
+            text-align: center;
         }
 
         .area-showCard {
@@ -55,22 +56,19 @@
 
         .area-getMore {
             display: flex;
-            justify-content: space-between;
+            // justify-content: space-between;
             margin-top: 64px;
-            padding: 12px 100px;
+            padding: 12px 12px;
             border-top: 1px solid #66CCFF;
             border-bottom: 1px solid #66CCFF;
-
+            
             .yBtn-default {
-                .FlexCenter();
-                .CardBox(120px, 50px, linear-gradient(180deg, #99164c 0%, #6e66693d 100%));
-                color: #FFF;
-                transition: background-color 0.3s;
-
-                &:focus, &:hover {
-                    background-color: #dd508b;
+                margin-left: 12px;
+                &:first-child {
+                    margin-left: 0;
                 }
             }
+         
 
         }
 
@@ -82,5 +80,16 @@
             background-color: rgb(243, 245, 234);
             font-size: 16px;
         }
+    }
+}
+
+.yBtn-default {
+    .FlexCenter();
+    .CardBox(120px, 50px, linear-gradient(180deg, #99164c 0%, #6e66693d 100%));
+    color: #FFF;
+    transition: background-color 0.3s;
+
+    &:focus, &:hover {
+        background-color: #dd508b;
     }
 }

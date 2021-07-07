@@ -14,7 +14,7 @@
             position: relative;
             margin: 6px 8px;
             padding: 8px 10px;
-            .CardBox(222px, 144px, #FFF, 8px);
+            .CardBox(222px, 170px, #FFF, 8px);
             overflow: hidden;
             transition: all 0.4s linear;
 
@@ -41,10 +41,17 @@
                     .CardBox(200px, 110px);
                 }
             }
+
+            .card-title {
+                margin-top: 4px;
+                font-size: 16px;
+            }
+
             .card-link {
                 display: flex;
                 justify-content: flex-end;
                 margin-top: 4px;
+
                 img {
                     .Wh(22px);
                     transform: rotate(180deg);
@@ -104,9 +111,8 @@
             .pop-main-img {
                 margin-top: 8px;
 
-
                 img {
-                    .MaxWh(100%);
+                    .MaxWh(100%, 450px);
                     border: 1px dashed #66CCFF;
                     border-radius: 8px;
                 }

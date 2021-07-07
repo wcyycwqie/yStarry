@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-22 16:23:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-06-30 16:10:58
+ * @LastEditTime: 2021-07-07 16:28:23
  * @FilePath: \yStarry\src\components\header\index.jsx
  */
 import React from 'react';
@@ -19,6 +19,7 @@ class NavBar extends React.Component {
         super()
         this.state = {
             scrollTop: 0,
+            currentIndex: 0,
             showNavFlag: false,
         }
     }
@@ -63,13 +64,20 @@ class NavBar extends React.Component {
             this.setState({ showNavFlag: false })
         }
     }
+    
+    chooseNav(i) {
+        this.setState({currentIndex: i})
+        if(i === 3) {
+            window.open('http://www.yfunny.cool:6868/')
+        }
+    }
 
     render () {
         console.log('render header');
         let liList = []
         let navTitle = ['风', '花', '雪', '月']
         liList = navTitle.map((el, i) => {
-            return <li key={`navLi${i}`}>{el}</li>
+            return <li className={`${this.state.currentIndex === i ? 'active': ''}`} key={`navLi${i}`} onClick={() => this.chooseNav(i)}>{el}</li>
         })
         return (
             <div className={`yNavBar ${this.state.showNavFlag ? 'bgShow' : ''}`}>
