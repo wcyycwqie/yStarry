@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-07 16:21:00
+ * @LastEditTime: 2021-07-23 17:22:32
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -12,6 +12,8 @@ import {
     withRouter,
     useLocation
 } from 'react-router-dom'
+// import request from '@/src/api/request';
+
 
 // export default class Container extends React.Component {
 //     render () {
@@ -48,38 +50,7 @@ class MainContent extends React.Component {
         this.state = {
             name: 'main area',
             showFlag: false,
-            dataList: [
-                {
-                    id: 1,
-                    name: 'star I',
-                    title: 'canvas教学',
-                    src: "2.png"
-                },
-                {
-                    id: 2,
-                    name: 'star II',
-                    title: 'css案例',
-                    src: '3.png'
-                },
-                {
-                    id: 3,
-                    name: 'star III',
-                    title: 'css动画',
-                    src: "4.png"
-                },
-                {
-                    id: 4,
-                    name: 'star IV',
-                    title: 'canvas教学',
-                    src: "5.png"
-                },
-                {
-                    id: 5,
-                    name: 'star V',
-                    title: 'canvas教学',
-                    src: "6.png"
-                }
-            ],
+            dataList: [],
             showImgSrc: '',
         }
         this.hotRef = React.createRef();
@@ -134,8 +105,6 @@ class MainContent extends React.Component {
         console.log('组件生命周期 componentDidUpdate 在render完成更新之后 ');
         console.log(prop);
     }
-
-
 
 
     renderCard () {
