@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-23 17:22:32
+ * @LastEditTime: 2021-07-23 18:41:08
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -12,7 +12,7 @@ import {
     withRouter,
     useLocation
 } from 'react-router-dom'
-// import request from '@/src/api/request';
+import request from '@/api/request';
 
 
 // export default class Container extends React.Component {
@@ -59,6 +59,16 @@ class MainContent extends React.Component {
     // 组件生命周期 getDerivedStateFromProps 在render更新前触发
     static getDerivedStateFromProps (props, state) {
         console.log('组件生命周期 getDerivedStateFromProps');
+        console.log(this);
+        console.log(props);
+        // getStarData()
+        request.get('/starry/getStarData', {
+            params: {
+            }
+        }).then(res => {
+            console.log(res.data);
+            let dataList = res.data.Data
+        })
         return null
     }
 
@@ -107,8 +117,11 @@ class MainContent extends React.Component {
     }
 
 
+
     renderCard () {
+        console.log('Card Render');
         // let dataList = [1, 2, 3, 4, 5]
+
         return this.state.dataList.map((item, index) => {
             return (
                 <div className="card-item" key={`card${index}`} onClick={(e) => this.itemClick(e, item, index)}>
@@ -235,4 +248,16 @@ class MainToast extends React.Component {
             </div>
         )
     }
+}
+
+function getStarData () {
+    console.log('GET DATA');
+    request.get('/starry/getStarData', {
+        params: {
+        }
+    }).then(res => {
+        console.log(res.data);
+        let dataList = res.data.Data
+        this.setState({ dataList })
+    })
 }
