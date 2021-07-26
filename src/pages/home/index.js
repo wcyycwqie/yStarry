@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-23 18:41:08
+ * @LastEditTime: 2021-07-26 18:26:10
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -57,18 +57,11 @@ class MainContent extends React.Component {
     }
 
     // 组件生命周期 getDerivedStateFromProps 在render更新前触发
-    static getDerivedStateFromProps (props, state) {
+    static async getDerivedStateFromProps (props, state) {
         console.log('组件生命周期 getDerivedStateFromProps');
         console.log(this);
         console.log(props);
-        // getStarData()
-        request.get('/starry/getStarData', {
-            params: {
-            }
-        }).then(res => {
-            console.log(res.data);
-            let dataList = res.data.Data
-        })
+
         return null
     }
 
@@ -82,6 +75,8 @@ class MainContent extends React.Component {
     // 组件生命周期 componentDidMount 组件第一次渲染后调用 数据初始化
     componentDidMount () {
         console.log('组件生命周期 componentDidMount');
+        this.getStarData()
+
     }
 
     // 组件生命周期 componentWillUnmount 组件从 DOM 中移除之前立刻被调用
@@ -120,6 +115,7 @@ class MainContent extends React.Component {
 
     renderCard () {
         console.log('Card Render');
+        console.log(this.state.dataList);
         // let dataList = [1, 2, 3, 4, 5]
 
         return this.state.dataList.map((item, index) => {
@@ -128,7 +124,7 @@ class MainContent extends React.Component {
                     {/* <div className="card-title">{item.name}</div> */}
                     {/* <div className="card-text">{item.id}</div> */}
                     <div className="card-img">
-                        <img src={require(`../../assets/images/background/${item.src || '1.png'}`).default} alt="" />
+                        <img src={item.cover_img} alt="" />
                     </div>
                     <div className="card-title">{item.title}</div>
                     <div className="card-link" >
@@ -140,7 +136,7 @@ class MainContent extends React.Component {
         })
     }
     itemClick (e, item, index) {
-        this.setState({ showFlag: true, showImgSrc: item.src })
+        this.setState({ showFlag: true, showImgSrc: item.cover_img })
     }
 
     getHotData (data) {
@@ -152,9 +148,22 @@ class MainContent extends React.Component {
         e.stopPropagation()
         console.log(data);
         console.log(this.props);
-        this.props.history.push(`/case-detail?id=1&name=${data.name}&imgUrl=${data.src}`)
+        localStorage.setItem('caseDetailData', JSON.stringify(data))
+        this.props.history.push(`/case-detail?id=1&title=${data.title}&imgUrl=${data.cover_img[0]}`)
         // this.props.history.push({ pathname: '/case-detail', query: { name: `123` } })
 
+    }
+
+    getStarData () {
+        console.log('GET DATA');
+        request.get('/starry/getStarData', {
+            params: {
+            }
+        }).then(res => {
+            console.log(res.data);
+            let dataList = res.data.Data
+            this.setState({ dataList })
+        })
     }
 
     render () {
@@ -225,9 +234,6 @@ class MainToast extends React.Component {
         if (!this.state.showToast) {
             return null
         }
-        // if (!this.props.showFlag) {
-        //     return null
-        // }
         return (
             <div id="mainToast" className="pop-box">
                 <div className="pop-cover" onClick={() => { this.props.parent.setState({ showFlag: false }) }}></div>
@@ -237,7 +243,8 @@ class MainToast extends React.Component {
                     </div>
                     <div className="pop-main">
                         <div className="pop-main-img">
-                            <img src={require(`../../assets/images/background/${this.props.showImgSrc || '1.png'}`).default} alt="" />
+                            {/* <img src={require(`../../assets/images/background/${this.props.showImgSrc || '1.png'}`).default} alt="" /> */}
+                            <img src={this.props.showImgSrc} alt="" />
                         </div>
                         <div className="pop-main-tips">
                             <span>text</span>
@@ -250,14 +257,3 @@ class MainToast extends React.Component {
     }
 }
 
-function getStarData () {
-    console.log('GET DATA');
-    request.get('/starry/getStarData', {
-        params: {
-        }
-    }).then(res => {
-        console.log(res.data);
-        let dataList = res.data.Data
-        this.setState({ dataList })
-    })
-}

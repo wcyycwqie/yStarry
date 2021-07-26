@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-23 15:55:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-05 17:40:32
+ * @LastEditTime: 2021-07-26 18:31:29
  * @FilePath: \yStarry\src\pages\caseDetail\index.js
  */
 import React from 'react';
@@ -32,6 +32,7 @@ class MainContent extends React.Component {
         super()
         this.state = {
             id: '',
+            title: '',
             imgUrl: '',
             content: '详情内容'
         }
@@ -51,7 +52,10 @@ class MainContent extends React.Component {
     static getDerivedStateFromProps (props, state) {
         const { search } = props.location
         let param = qs.parse(search.slice(1))
-        return param
+        let data = JSON.parse(localStorage.getItem('caseDetailData')) || {}
+        console.log(data);
+
+        return data
 
     }
 
@@ -63,17 +67,21 @@ class MainContent extends React.Component {
         return (
             <div className="main">
                 <div className="details-area">
-                    <div className="area-title">title</div>
-                    <div className="area-describe">tag</div>
+                    <div className="area-title">{this.state.title}</div>
+                    <div className="area-describe">{this.state.tag}</div>
                     <div className="area-showCard">
                         {/* <img src="http://www.yfunny.cool/image/01.png" alt="" /> */}
-                        <img src={this.state.imgUrl ? require(`../../assets/images/background/${this.state.imgUrl}`).default : 'http://www.yfunny.cool/image/01.png'} alt="" />
+                        <img src={this.state.imgUrl ? this.state.imgUrl : 'http://www.yfunny.cool/image/01.png'} alt="" />
 
                         <div className="bottom-card"></div>
                     </div>
                     <div className="area-getMore">
-                        <div className="yBtn-default">演示页面</div>
-                        <div className="yBtn-default">查看文章</div>
+                        <div className="yBtn-default" >
+                            <a href={this.state.demo_url} target="_blank" rel="noopener noreferrer">演示页面</a>
+                        </div>
+                        <div className="yBtn-default">
+                            <a href={this.state.article_url} target="_blank" rel="noopener noreferrer">查看文章</a>
+                        </div>
                     </div>
                     <div className="area-details">
                         <span>{this.state.content}</span>
