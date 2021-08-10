@@ -1,7 +1,15 @@
 import axios from 'axios'
 
+const host = window.location.host;
+let Env;
+if (host === 'http://www.yfunny.cool/') {
+    Env = 'pro'    
+} else {
+    Env = 'dev'
+}
+
 const request = axios.create({
-    baseURL: 'http://192.168.1.137',
+    baseURL: Env === 'pro' ? host : 'http://127.0.0.1',
     timeout: 5000,
     // headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 })
