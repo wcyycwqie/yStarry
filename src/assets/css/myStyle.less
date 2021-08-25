@@ -51,6 +51,12 @@
   box-sizing: border-box;
 }
 
+.FontStyle(@size: 20px; @color: #1d2129; @weight: 400) {
+  font-size: @size;
+  color: @color;
+  font-weight: @weight;
+}
+
 .Pre(@style; @value) {
   -webkit-@{style}: @value;
   -mos-@{style}: @value;

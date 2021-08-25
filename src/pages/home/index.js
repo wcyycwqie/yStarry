@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-26 18:26:10
+ * @LastEditTime: 2021-08-25 14:00:34
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -52,6 +52,8 @@ class MainContent extends React.Component {
             showFlag: false,
             dataList: [],
             showImgSrc: '',
+            showTitle: '',
+            showText: '',
         }
         this.hotRef = React.createRef();
     }
@@ -136,7 +138,7 @@ class MainContent extends React.Component {
         })
     }
     itemClick (e, item, index) {
-        this.setState({ showFlag: true, showImgSrc: item.cover_img })
+        this.setState({ showFlag: true, showImgSrc: item.cover_img, showTitle: item.title, showText: item.content })
     }
 
     getHotData (data) {
@@ -173,7 +175,7 @@ class MainContent extends React.Component {
                     {this.renderCard()}
                 </div>
                 <ShowHot ref={this.hotRef} parent={this} nameValue={this.state.name} />
-                <MainToast parent={this} showFlag={this.state.showFlag} showImgSrc={this.state.showImgSrc} />
+                <MainToast parent={this} showFlag={this.state.showFlag} showImgSrc={this.state.showImgSrc}/>
             </div>
         )
     }
@@ -220,7 +222,8 @@ class MainToast extends React.Component {
         console.log('-----');
         if (state.showToast !== props.showFlag) {
             return {
-                showToast: props.showFlag
+                showToast: props.showFlag,
+                ...props.parent.state
             }
         }
         return null;
@@ -239,7 +242,7 @@ class MainToast extends React.Component {
                 <div className="pop-cover" onClick={() => { this.props.parent.setState({ showFlag: false }) }}></div>
                 <div className="pop-content">
                     <div className="pop-top">
-                        <span className="pop-title">Title</span>
+                        <span className="pop-title">{this.state.showTitle}</span>
                     </div>
                     <div className="pop-main">
                         <div className="pop-main-img">
@@ -247,7 +250,7 @@ class MainToast extends React.Component {
                             <img src={this.props.showImgSrc} alt="" />
                         </div>
                         <div className="pop-main-tips">
-                            <span>text</span>
+                            <span>{this.state.showText}</span>
                         </div>
 
                     </div>

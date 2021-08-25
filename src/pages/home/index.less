@@ -45,6 +45,9 @@
             .card-title {
                 margin-top: 4px;
                 font-size: 16px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
             }
 
             .card-link {
@@ -87,7 +90,9 @@
         flex-direction: column;
         align-items: center;
         padding: 16px 12px;
-        .CardBox(800px, 550px, #FFF);
+        .CardBox(800px, 550px, rgba(35, 36, 34, 0.8));
+        overflow: hidden;
+
 
         // transition: all 0.3s;
         animation: showToast 0.6s ease-in;
@@ -97,26 +102,45 @@
             0% {
                 .Wh(0);
                 opacity: 0.3;
-
             }
-
             100% {
                 .Wh(800px, 550px);
             }
         }
 
+        .pop-top {
+            height: 40px;
+
+            .pop-title {
+                font-size: 30px;
+                color: #FFF;
+                text-align: center;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+
         .pop-main {
+            flex: 1;
+            width: 100%;
             text-align: center;
 
             .pop-main-img {
                 margin-top: 8px;
 
                 img {
-                    .MaxWh(100%, 450px);
-                    border: 1px dashed #66CCFF;
-                    border-radius: 8px;
+                    .MaxWh(100%; 360px);
+                    border: 1px dashed #d0dfe7;
+                    border-radius: 16px;
                 }
             }
+
+            .pop-main-tips {
+                margin-top: 12px;
+                .FontStyle(20px; rgb(235, 217, 217));
+            }
+
 
         }
     }

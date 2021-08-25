@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-23 15:55:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-07-26 18:31:29
+ * @LastEditTime: 2021-08-25 16:01:46
  * @FilePath: \yStarry\src\pages\caseDetail\index.js
  */
 import React from 'react';
@@ -64,14 +64,23 @@ class MainContent extends React.Component {
         console.log('render caseDetail')
         console.log(this.props);
         console.log(this.state);
+
+        const tagFormat = ['js', 'css', 'canvas', 'vue', 'react', 'nodejs']
+
         return (
             <div className="main">
                 <div className="details-area">
                     <div className="area-title">{this.state.title}</div>
-                    <div className="area-describe">{this.state.tag}</div>
+                    <div className="area-describe">
+                        {this.state.tag.map(el => {
+                            return (
+                                <div className="area-describe-tag">{tagFormat[Number(el - 1)]}</div>
+                            )
+                        }) }
+                    </div>
                     <div className="area-showCard">
                         {/* <img src="http://www.yfunny.cool/image/01.png" alt="" /> */}
-                        <img src={this.state.imgUrl ? this.state.imgUrl : 'http://www.yfunny.cool/image/01.png'} alt="" />
+                        <img src={this.state.cover_img ? this.state.cover_img[0] : 'http://www.yfunny.cool/image/01.png'} alt="" />
 
                         <div className="bottom-card"></div>
                     </div>
