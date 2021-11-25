@@ -10,7 +10,7 @@ if (hostname === 'www.yfunny.cool') {
 }
 
 const request = axios.create({
-    baseURL: Env === 'pro' ? `http://${hostname}` : 'http://127.0.0.1',
+    baseURL: Env === 'pro' ? `https://${hostname}` : 'http://127.0.0.1',
     timeout: 5000,
     // headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 })
