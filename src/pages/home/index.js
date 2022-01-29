@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-08-25 14:00:34
+ * @LastEditTime: 2022-01-18 18:24:27
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -162,9 +162,12 @@ class MainContent extends React.Component {
             params: {
             }
         }).then(res => {
-            console.log(res.data);
-            let dataList = res.data.Data
-            this.setState({ dataList })
+
+            if (res.code === 200) {
+                let dataList = res.Data
+                this.setState({ dataList })
+            }
+
         })
     }
 
@@ -175,7 +178,7 @@ class MainContent extends React.Component {
                     {this.renderCard()}
                 </div>
                 <ShowHot ref={this.hotRef} parent={this} nameValue={this.state.name} />
-                <MainToast parent={this} showFlag={this.state.showFlag} showImgSrc={this.state.showImgSrc}/>
+                <MainToast parent={this} showFlag={this.state.showFlag} showImgSrc={this.state.showImgSrc} />
             </div>
         )
     }

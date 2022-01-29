@@ -20,9 +20,9 @@
 
         .area-describe {
             .area-describe-tag {
-                .CardBox(100px; 38px; transparent);
+                .CardBox(60px; 28px; transparent);
                 .FlexCenter;
-                .FontStyle(20px; #222);
+                .FontStyle(14px; #FFF);
                 border: 1px solid #66ccFF;
             }
         }
@@ -71,22 +71,23 @@
             padding: 12px 12px;
             border-top: 1px solid #66CCFF;
             border-bottom: 1px solid #66CCFF;
-            
+
             .yBtn-default {
                 margin-left: 12px;
+
                 &:first-child {
                     margin-left: 0;
                 }
             }
-         
+
 
         }
 
         .area-details {
             margin-top: 32px;
             padding: 12px 16px;
-            .MinWh(100%, 800px);
-            border-radius: 16px;
+            .MinWh(100%; 320px);
+            border-radius: 12px;
             background-color: rgb(243, 245, 234);
             font-size: 16px;
         }
@@ -99,7 +100,8 @@
     color: #FFF;
     transition: background-color 0.3s;
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
         background-color: #dd508b;
     }
 }

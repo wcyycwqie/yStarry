@@ -4,7 +4,7 @@ const host = window.location.host;
 const hostname = window.location.hostname;
 let Env;
 if (hostname === 'www.yfunny.cool') {
-    Env = 'pro'    
+    Env = 'pro'
 } else {
     Env = 'dev'
 }
@@ -15,18 +15,27 @@ const request = axios.create({
     // headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 })
 
-// request.interceptors.request.use(
-//     function (config) {
+//  请求拦截器
+request.interceptors.request.use(async config => {
 
-//     }, function (err) {
-//         return Promise.reject(err)
-//     }
-// )
+    return config
+}, error => {
+    return Promise.reject
+}
+)
 
-// request.interceptors.response.use(res => {
-//     return res
-// }, err => {
-//     return Promise.reject(err)
-// })
+//  响应拦截器
+request.interceptors.response.use(response => {
+    const res = response.data
+
+    if (res.code === 200) {
+        return res
+    } else {
+        alert(res.msg)
+    }
+    return res
+}, error => {
+    return Promise.reject(error)
+})
 
 export default request
