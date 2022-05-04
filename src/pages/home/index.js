@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-18 14:34:33
  * @LastEditors: Chaoyue
- * @LastEditTime: 2022-01-18 18:24:27
+ * @LastEditTime: 2022-02-15 15:49:36
  * @FilePath: \yStarry\src\pages\home\index.js
  */
 import React from 'react';
@@ -126,7 +126,7 @@ class MainContent extends React.Component {
                     {/* <div className="card-title">{item.name}</div> */}
                     {/* <div className="card-text">{item.id}</div> */}
                     <div className="card-img">
-                        <img src={item.cover_img} alt="" />
+                        <img src={item.cover_img[0]} alt="" />
                     </div>
                     <div className="card-title">{item.title}</div>
                     <div className="card-link" >
@@ -151,7 +151,7 @@ class MainContent extends React.Component {
         console.log(data);
         console.log(this.props);
         localStorage.setItem('caseDetailData', JSON.stringify(data))
-        this.props.history.push(`/case-detail?id=1&title=${data.title}&imgUrl=${data.cover_img[0]}`)
+        this.props.history.push(`/case-detail?id=${data.star_id}`)
         // this.props.history.push({ pathname: '/case-detail', query: { name: `123` } })
 
     }

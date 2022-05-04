@@ -2,7 +2,7 @@
  * @Author: 
  * @Date: 2021-06-23 15:55:30
  * @LastEditors: Chaoyue
- * @LastEditTime: 2021-08-25 16:01:46
+ * @LastEditTime: 2022-02-15 15:52:15
  * @FilePath: \yStarry\src\pages\caseDetail\index.js
  */
 import React from 'react';
@@ -76,7 +76,7 @@ class MainContent extends React.Component {
                             return (
                                 <div className="area-describe-tag">{tagFormat[Number(el - 1)]}</div>
                             )
-                        }) }
+                        })}
                     </div>
                     <div className="area-showCard">
                         {/* <img src="http://www.yfunny.cool/image/01.png" alt="" /> */}

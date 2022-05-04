@@ -1,13 +1,16 @@
+/*
+ * @Author: Chaoyue
+ * @Date: 2021-12-02 11:13:39
+ * @LastEditors: Chaoyue
+ * @LastEditTime: 2022-05-04 11:56:36
+ * @FilePath: \yStarry\src\api\request.js
+ * @FileDescribe: 
+ */
 import axios from 'axios'
 
 const host = window.location.host;
 const hostname = window.location.hostname;
-let Env;
-if (hostname === 'www.yfunny.cool') {
-    Env = 'pro'
-} else {
-    Env = 'dev'
-}
+let Env = hostname.indexOf('yfunny.cool') > -1 ? 'pro' : 'dev'
 
 const request = axios.create({
     baseURL: Env === 'pro' ? `https://${hostname}` : 'http://127.0.0.1',
